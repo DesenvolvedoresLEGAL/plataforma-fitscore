@@ -9,11 +9,14 @@ import { HiringDna } from '@/components/onboarding/hiring-dna';
 import { Calibration } from '@/components/onboarding/calibration';
 import { Finalize } from '@/components/onboarding/finalize';
 import { Success } from '@/components/onboarding/success';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LanguageSwitcher } from '@/components/language-switcher';
 
 const TOTAL_STEPS = 7;
 
 const Onboarding: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const { t } = useLanguage();
 
   const handleNext = () => {
     setCurrentStep(prev => Math.min(prev + 1, TOTAL_STEPS));
@@ -26,8 +29,9 @@ const Onboarding: React.FC = () => {
   return (
     <div className="min-h-screen bg-fitscore-gray-50 flex flex-col">
       <header className="bg-white p-4 border-b">
-        <div className="container mx-auto">
+        <div className="container mx-auto flex justify-between items-center">
           <Logo />
+          <LanguageSwitcher />
         </div>
       </header>
 

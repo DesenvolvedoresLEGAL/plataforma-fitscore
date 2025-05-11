@@ -2,6 +2,7 @@
 import React from 'react';
 import { StepLayout } from './step-layout';
 import { Check } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface FinalizeProps {
   onNext: () => void;
@@ -11,15 +12,17 @@ interface FinalizeProps {
 }
 
 export const Finalize: React.FC<FinalizeProps> = ({ onNext, onBack, currentStep, totalSteps }) => {
+  const { t } = useLanguage();
+  
   return (
     <StepLayout
-      title="Finalize & Launch"
-      description="Review your FitScore™ customization and get ready to launch your personalized hiring algorithm."
+      title={t('onboarding.finalize.title')}
+      description={t('onboarding.finalize.description')}
       currentStep={currentStep}
       totalSteps={totalSteps}
       onBack={onBack}
       onNext={onNext}
-      nextLabel="Activate FitScore™ Engine"
+      nextLabel={t('onboarding.finalize.activateButton')}
     >
       <div className="space-y-8">
         <div className="text-center py-8">
@@ -27,46 +30,46 @@ export const Finalize: React.FC<FinalizeProps> = ({ onNext, onBack, currentStep,
             <Check className="h-10 w-10 text-fitscore-blue" />
           </div>
           
-          <h3 className="text-xl font-medium mb-2">Configuration Complete!</h3>
+          <h3 className="text-xl font-medium mb-2">{t('onboarding.finalize.configComplete')}</h3>
           <p className="text-fitscore-gray-500 max-w-md mx-auto">
-            Your FitScore™ engine is ready to be activated. This will create a custom AI model based on your inputs.
+            {t('onboarding.finalize.configDescription')}
           </p>
         </div>
 
         <div className="bg-fitscore-gray-50 p-6 rounded-lg">
-          <h4 className="font-medium text-lg mb-4">Summary</h4>
+          <h4 className="font-medium text-lg mb-4">{t('onboarding.finalize.summary')}</h4>
           
           <div className="space-y-4">
             <div className="flex justify-between py-2 border-b">
-              <span className="text-fitscore-gray-500">Company Values</span>
-              <span className="font-medium">5 values defined</span>
+              <span className="text-fitscore-gray-500">{t('onboarding.finalize.companyValues')}</span>
+              <span className="font-medium">5 {t('onboarding.finalize.valuesCount')}</span>
             </div>
             
             <div className="flex justify-between py-2 border-b">
-              <span className="text-fitscore-gray-500">Historic Team Data</span>
-              <span className="font-medium">3 employees processed</span>
+              <span className="text-fitscore-gray-500">{t('onboarding.finalize.teamData')}</span>
+              <span className="font-medium">3 {t('onboarding.finalize.employeesProcessed')}</span>
             </div>
             
             <div className="flex justify-between py-2 border-b">
-              <span className="text-fitscore-gray-500">Roles Mapped</span>
-              <span className="font-medium">1 role configured</span>
+              <span className="text-fitscore-gray-500">{t('onboarding.finalize.rolesMapped')}</span>
+              <span className="font-medium">1 {t('onboarding.finalize.rolesConfigured')}</span>
             </div>
             
             <div className="flex justify-between py-2 border-b">
-              <span className="text-fitscore-gray-500">Key Traits Defined</span>
-              <span className="font-medium">5 traits weighted</span>
+              <span className="text-fitscore-gray-500">{t('onboarding.finalize.keyTraits')}</span>
+              <span className="font-medium">5 {t('onboarding.finalize.traitsWeighted')}</span>
             </div>
             
             <div className="flex justify-between py-2">
-              <span className="text-fitscore-gray-500">Algorithm Calibration</span>
-              <span className="font-medium">3 profiles evaluated</span>
+              <span className="text-fitscore-gray-500">{t('onboarding.finalize.calibration')}</span>
+              <span className="font-medium">3 {t('onboarding.finalize.profilesEvaluated')}</span>
             </div>
           </div>
         </div>
 
         <div className="bg-fitscore-blue-light p-4 rounded-lg">
           <p className="text-center text-fitscore-blue font-medium">
-            After activation, your FitScore™ engine will be ready to evaluate new candidates within 15 minutes.
+            {t('onboarding.finalize.activationNote')}
           </p>
         </div>
       </div>

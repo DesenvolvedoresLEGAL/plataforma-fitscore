@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { StepLayout } from './step-layout';
 import { X } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface CompanyValuesProps {
   onNext: () => void;
@@ -13,15 +14,30 @@ interface CompanyValuesProps {
   totalSteps: number;
 }
 
-const predefinedValues = [
-  "Innovation", "Transparency", "Customer Focus", "Diversity", "Excellence", 
-  "Integrity", "Teamwork", "Accountability", "Growth Mindset", "Ownership",
-  "Passion", "Quality", "Respect", "Trust", "Adaptability"
+const getPredefinedValues = (t: (key: string) => string) => [
+  t('value.innovation'), 
+  t('value.transparency'), 
+  t('value.customerFocus'), 
+  t('value.diversity'), 
+  t('value.excellence'),
+  t('value.integrity'), 
+  t('value.teamwork'), 
+  t('value.accountability'), 
+  t('value.growthMindset'), 
+  t('value.ownership'),
+  t('value.passion'), 
+  t('value.quality'), 
+  t('value.respect'), 
+  t('value.trust'), 
+  t('value.adaptability')
 ];
 
 export const CompanyValues: React.FC<CompanyValuesProps> = ({ onNext, onBack, currentStep, totalSteps }) => {
+  const { t } = useLanguage();
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [customValue, setCustomValue] = useState('');
+
+  const predefinedValues = getPredefinedValues(t);
 
   const addValue = (value: string) => {
     if (value && !selectedValues.includes(value)) {
@@ -43,8 +59,8 @@ export const CompanyValues: React.FC<CompanyValuesProps> = ({ onNext, onBack, cu
 
   return (
     <StepLayout
-      title="Company Values & Culture"
-      description="Select values that best represent your company culture. These will help calibrate the FitScore™ algorithm."
+      title={t('onboarding.companyValues.title')}
+      description={t('onboarding.companyValues.description')}
       currentStep={currentStep}
       totalSteps={totalSteps}
       onBack={onBack}
@@ -53,7 +69,7 @@ export const CompanyValues: React.FC<CompanyValuesProps> = ({ onNext, onBack, cu
     >
       <div className="space-y-6">
         <div>
-          <label className="block font-medium mb-2">Select core company values</label>
+          <label className="block font-medium mb-2">{t('onboarding.companyValues.selectCore')}</label>
           <div className="tag-input-container">
             {selectedValues.map(value => (
               <div key={value} className="tag-item">
@@ -72,14 +88,14 @@ export const CompanyValues: React.FC<CompanyValuesProps> = ({ onNext, onBack, cu
               value={customValue}
               onChange={(e) => setCustomValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Type a value and press Enter..."
+              placeholder={t('onboarding.companyValues.typeValue')}
               className="flex-grow border-none focus:ring-0 p-0 min-w-[150px] text-sm"
             />
           </div>
         </div>
 
         <div>
-          <label className="block font-medium mb-2">Suggested values</label>
+          <label className="block font-medium mb-2">{t('onboarding.companyValues.suggested')}</label>
           <div className="flex flex-wrap gap-2">
             {predefinedValues.filter(value => !selectedValues.includes(value)).map(value => (
               <Button
@@ -96,9 +112,9 @@ export const CompanyValues: React.FC<CompanyValuesProps> = ({ onNext, onBack, cu
         </div>
 
         <div>
-          <label className="block font-medium mb-2">Company culture description (optional)</label>
+          <label className="block font-medium mb-2">{t('onboarding.companyValues.description.label')}</label>
           <Textarea 
-            placeholder="Briefly describe your company's culture, mission, or any unique aspects..."
+            placeholder={t('onboarding.companyValues.description.placeholder')}
             className="min-h-[100px]"
           />
         </div>

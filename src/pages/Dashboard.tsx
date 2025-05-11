@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { User, Users, Check, Clock } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { 
   BarChart, 
   Bar, 
@@ -37,6 +38,7 @@ const weeklyTrendData = [
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   
   return (
     <div className="min-h-screen flex flex-col bg-fitscore-gray-50">
@@ -45,46 +47,46 @@ const Dashboard: React.FC = () => {
       <main className="flex-grow container max-w-7xl mx-auto p-6">
         <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
           <div>
-            <h1 className="text-2xl font-bold mb-1">FitScore™ Dashboard</h1>
-            <p className="text-fitscore-gray-500">Track and analyze your candidate fit scores</p>
+            <h1 className="text-2xl font-bold mb-1">{t('dashboard.title')}</h1>
+            <p className="text-fitscore-gray-500">{t('dashboard.subtitle')}</p>
           </div>
           
           <div className="flex gap-3">
             <Button variant="outline" onClick={() => navigate('/onboarding')}>
-              Recalibrate Model
+              {t('nav.recalibrateModel')}
             </Button>
             <Button>
-              Score New Candidate
+              {t('nav.scoreNewCandidate')}
             </Button>
           </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <SummaryCard 
-            title="Candidates Scored" 
+            title={t('dashboard.candidatesScored')} 
             value={68} 
-            subtitle="Last 30 days"
+            subtitle={t('dashboard.last30days')}
             icon={<User className="h-5 w-5 text-fitscore-blue" />}
             variant="blue"
           />
           <SummaryCard 
-            title="Average FitScore" 
+            title={t('dashboard.averageFitScore')} 
             value="76.4"
-            subtitle="All candidates"
+            subtitle={t('dashboard.allCandidates')}
             icon={<Clock className="h-5 w-5 text-fitscore-green" />}
             variant="green"
           />
           <SummaryCard 
-            title="High Fit Candidates" 
+            title={t('dashboard.highFitCandidates')} 
             value={18} 
-            subtitle="Score > 80"
+            subtitle={t('dashboard.scoreAbove')}
             icon={<Check className="h-5 w-5 text-fitscore-purple" />}
             variant="purple"
           />
           <SummaryCard 
-            title="Candidates Hired" 
+            title={t('dashboard.candidatesHired')} 
             value={10}
-            subtitle="Last 30 days"
+            subtitle={t('dashboard.last30days')}
             icon={<Users className="h-5 w-5" />}
           />
         </div>
@@ -92,7 +94,7 @@ const Dashboard: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <Card className="lg:col-span-2 shadow-sm border-0">
             <CardHeader>
-              <CardTitle className="text-lg font-medium">Score Distribution</CardTitle>
+              <CardTitle className="text-lg font-medium">{t('dashboard.scoreDistribution')}</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
@@ -109,7 +111,7 @@ const Dashboard: React.FC = () => {
           
           <Card className="shadow-sm border-0">
             <CardHeader>
-              <CardTitle className="text-lg font-medium">Weekly Trends</CardTitle>
+              <CardTitle className="text-lg font-medium">{t('dashboard.weeklyTrends')}</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
