@@ -8,11 +8,12 @@ import { RolesMapping } from '@/components/onboarding/roles-mapping';
 import { HiringDna } from '@/components/onboarding/hiring-dna';
 import { Calibration } from '@/components/onboarding/calibration';
 import { Finalize } from '@/components/onboarding/finalize';
+import { ProcessStructure } from '@/components/onboarding/process-structure';
 import { Success } from '@/components/onboarding/success';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from '@/components/language-switcher';
 
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 8;
 
 const Onboarding: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -90,7 +91,7 @@ const Onboarding: React.FC = () => {
         )}
         
         {currentStep === 6 && (
-          <Finalize
+          <ProcessStructure
             onNext={handleNext}
             onBack={handleBack}
             currentStep={currentStep}
@@ -99,6 +100,15 @@ const Onboarding: React.FC = () => {
         )}
         
         {currentStep === 7 && (
+          <Finalize
+            onNext={handleNext}
+            onBack={handleBack}
+            currentStep={currentStep}
+            totalSteps={TOTAL_STEPS}
+          />
+        )}
+        
+        {currentStep === 8 && (
           <Success />
         )}
       </main>

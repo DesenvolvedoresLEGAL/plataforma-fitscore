@@ -60,9 +60,14 @@ export const Finalize: React.FC<FinalizeProps> = ({ onNext, onBack, currentStep,
               <span className="font-medium">5 {t('onboarding.finalize.traitsWeighted')}</span>
             </div>
             
-            <div className="flex justify-between py-2">
+            <div className="flex justify-between py-2 border-b">
               <span className="text-fitscore-gray-500">{t('onboarding.finalize.calibration')}</span>
               <span className="font-medium">3 {t('onboarding.finalize.profilesEvaluated')}</span>
+            </div>
+            
+            <div className="flex justify-between py-2">
+              <span className="text-fitscore-gray-500">{t('onboarding.finalize.processStructure')}</span>
+              <span className="font-medium">1 {t('onboarding.finalize.processConfigured')}</span>
             </div>
           </div>
         </div>
