@@ -1,17 +1,15 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from '@/components/language-switcher';
-
 const Index = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  const {
+    t
+  } = useLanguage();
+  return <div className="min-h-screen flex flex-col">
       <header className="bg-white p-4 border-b">
         <div className="container mx-auto flex justify-between items-center">
           <Logo />
@@ -43,20 +41,11 @@ const Index = () => {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Button 
-                size="lg" 
-                className="text-md"
-                onClick={() => navigate('/onboarding')}
-              >
+              <Button size="lg" className="text-md" onClick={() => navigate('/onboarding')}>
                 {t('nav.startCustomization')}
               </Button>
               
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="text-md"
-                onClick={() => navigate('/dashboard')}
-              >
+              <Button variant="outline" size="lg" className="text-md" onClick={() => navigate('/dashboard')}>
                 {t('nav.viewDemoDashboard')}
               </Button>
             </div>
@@ -99,8 +88,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
